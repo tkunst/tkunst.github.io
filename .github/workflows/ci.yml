@@ -1,0 +1,38 @@
+name: ci
+
+# Static checks on every push/PR: the shared site guard (no em-dashes, no
+# outside fonts/scripts/images, only the published contact address, AP
+# trademark notice, page basics) plus a link check of the hub's HTML/README.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  site-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python3 scripts/site_guard.py
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Root-relative card links (/ap-world-regions-quiz/) point at OTHER repos,
+      # so they're checked against the live site by live.yml instead.
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        with:
+          args: >-
+            --no-progress
+            --root-dir ${{ github.workspace }}
+            --config .github/lychee.toml
+            --exclude '^/'
+            './**/*.html' './**/*.md'
+          fail: true

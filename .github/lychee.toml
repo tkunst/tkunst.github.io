@@ -1,0 +1,9 @@
+exclude = [
+  "^file://",
+  "^mailto:",
+]
+max_retries = 2
+retry_wait_time = 2
+timeout = 20
+# Some sites 403/429 bots.
+accept = ["200..=299", "403", "429"]
