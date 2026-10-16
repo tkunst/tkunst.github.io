@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>tklearn · Free Study Resources</title>
+<meta name="description" content="Free, self-contained study resources for high school courses, starting with AP World History. Everything runs in the browser. No logins, and no data collected.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230f5257'/><circle cx='50' cy='50' r='20' fill='%23f2a541'/></svg>">
+<style>
+  :root{--teal:#0f5257;--teal-d:#083a3e;--sea:#1b7f86;--amber:#f2a541;--amber-d:#c27a12;
+    --paper:#f5f8f7;--ink:#17201f;--ink-soft:#4e605e;--card:#fff;--line:#d6e3e1}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;color:var(--ink);background:
+    radial-gradient(ellipse 60% 45% at 90% -8%,rgba(242,165,65,.16) 0%,transparent 60%),
+    radial-gradient(ellipse 55% 45% at -5% 100%,rgba(15,82,87,.11) 0%,transparent 60%),var(--paper);
+    min-height:100vh;line-height:1.6;font-size:17px}
+  a{color:inherit}
+  .wrap{max-width:1000px;margin:0 auto;padding:22px 16px 90px}
+
+  .topbar{display:flex;align-items:center;gap:14px;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap}
+  .wordmark{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--teal);font-size:1.25rem;text-decoration:none;letter-spacing:-.01em}
+  .wordmark .dot{width:15px;height:15px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(242,165,65,.3)}
+  .navlinks{display:flex;gap:8px;flex-wrap:wrap}
+  .navlinks a{font-weight:700;font-size:.85rem;color:var(--teal);text-decoration:none;
+    border:2px solid var(--line);border-radius:10px;padding:8px 14px;transition:.14s;white-space:nowrap}
+  .navlinks a:hover{border-color:var(--teal)}
+
+  header.hero{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 16px 40px rgba(8,58,62,.25);
+    background:linear-gradient(135deg,var(--teal-d) 0%,var(--teal) 55%,var(--sea) 100%);color:#fff;
+    padding:clamp(28px,6vw,56px) clamp(22px,5vw,52px)}
+  header.hero svg.globe{position:absolute;right:-60px;top:-40px;width:340px;height:340px;opacity:.16;pointer-events:none}
+  header.hero .eyebrow{font-weight:800;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+  header.hero h1{font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;font-weight:800;max-width:15em;margin-bottom:14px;letter-spacing:-.02em}
+  header.hero p{font-size:1.08rem;max-width:34em;color:rgba(255,255,255,.88);font-weight:500}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:999px}
+
+  .section-h{color:var(--teal-d);font-size:1.35rem;font-weight:800;margin:38px 0 4px;display:flex;align-items:center;gap:10px}
+  .section-h::before{content:"";width:22px;height:5px;border-radius:3px;background:var(--amber)}
+  .section-sub{color:var(--ink-soft);font-weight:600;margin-bottom:18px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+  .card{position:relative;display:flex;flex-direction:column;background:var(--card);border:2px solid var(--line);border-radius:18px;
+    padding:22px 22px 20px;text-decoration:none;color:inherit;transition:.16s;box-shadow:0 6px 20px rgba(8,58,62,.05);overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--teal),var(--sea))}
+  .card.amber::before{background:linear-gradient(90deg,var(--amber-d),var(--amber))}
+  a.card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 14px 30px rgba(8,58,62,.16)}
+  .card.soon{border-style:dashed;box-shadow:none;background:rgba(255,255,255,.55)}
+  .card .kicker{font-weight:800;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-d);margin:6px 0 8px}
+  .card h3{font-weight:800;color:var(--teal-d);font-size:1.22rem;line-height:1.2;margin-bottom:8px}
+  .card p{font-weight:500;color:var(--ink-soft);font-size:.95rem;flex:1}
+  .card .go{margin-top:14px;font-weight:800;color:var(--teal);font-size:.92rem;display:inline-flex;align-items:center;gap:6px}
+  .card .go .arw{transition:.16s}
+  a.card:hover .go .arw{transform:translateX(4px)}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .tag{background:rgba(15,82,87,.07);color:var(--teal);font-weight:700;font-size:.74rem;padding:4px 9px;border-radius:7px}
+
+  .panel{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:26px clamp(18px,3vw,34px);margin-top:20px;box-shadow:0 6px 20px rgba(8,58,62,.05)}
+  .panel h2{color:var(--teal);font-size:1.25rem;font-weight:800;margin:22px 0 8px}
+  .panel h2:first-child{margin-top:0}
+  .panel p{margin-bottom:12px;font-weight:500}
+  .panel a{color:var(--teal);font-weight:700}
+  .lictable{overflow-x:auto;margin:6px 0 14px}
+  table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:500;vertical-align:top}
+  th{color:var(--teal);background:rgba(15,82,87,.05);white-space:nowrap;font-weight:800}
+  .stamp{background:rgba(15,82,87,.06);border-left:5px solid var(--teal);border-radius:0 12px 12px 0;padding:15px 18px;margin:2px 0 16px;font-weight:700;color:var(--teal-d)}
+  .cite{background:rgba(242,165,65,.14);border:2px dashed var(--amber-d);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--teal-d);margin:6px 0 14px}
+  .fine{font-size:.88rem;color:var(--ink-soft)}
+
+  footer{text-align:center;margin-top:44px;font-size:.84rem;color:var(--ink-soft);font-weight:600;line-height:1.9}
+  footer a{color:var(--teal);font-weight:700;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  footer .fdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--amber);vertical-align:middle;margin:0 4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span> tklearn</a>
+    <nav class="navlinks" aria-label="Page sections">
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
+      <a href="#licensing">Licensing</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <svg class="globe" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1.6">
+      <circle cx="50" cy="50" r="46"/><ellipse cx="50" cy="50" rx="20" ry="46"/><ellipse cx="50" cy="50" rx="38" ry="46"/>
+      <line x1="4" y1="50" x2="96" y2="50"/><path d="M10 30h80M10 70h80"/>
+    </svg>
+    <div class="eyebrow">Free study resources</div>
+    <h1>Practice that works in any browser</h1>
+    <p>Self-contained study tools for high school courses, starting with AP World History. Open a link and start practicing. There is nothing to install and no account to make.</p>
+    <div class="chips"><span class="chip">No logins</span><span class="chip">No data collected</span><span class="chip">Built for Chromebooks and iPads</span></div>
+  </header>
+
+  <h2 class="section-h" id="resources">Explore the resources</h2>
+  <p class="section-sub">Each one opens as its own page. Your progress stays on your device.</p>
+
+  <div class="grid">
+
+    <a class="card" href="/ap-world-regions-quiz/">
+      <div class="kicker">AP World History · Geography</div>
+      <h3>AP World Regions Map Quiz</h3>
+      <p>Learn the 16 world regions used in AP World History. Part 1: drag each label onto the map. Part 2: type the region names from memory, with no word bank. Instant feedback shows what you got right and what to try again.</p>
+      <div class="tags"><span class="tag">AP World History</span><span class="tag">Drag &amp; drop</span><span class="tag">Type-in recall</span></div>
+      <span class="go">Start the quiz <span class="arw">→</span></span>
+    </a>
+
+    <div class="card amber soon">
+      <div class="kicker">Coming soon</div>
+      <h3>More practice on the way</h3>
+      <p>New quizzes, study guides, and reference sheets will appear here as they are built. Bookmark this page to find them.</p>
+    </div>
+
+  </div>
+
+  <div class="panel" id="about">
+    <h2>About these resources</h2>
+    <p>These are free practice tools for students studying on their own or with a parent, tutor, or teacher. Each one is a single web page that runs entirely in the browser, so it loads quickly on school devices and keeps working after the page has loaded, even on a shaky connection.</p>
+    <h2>Privacy</h2>
+    <p>There are no logins and no accounts. Nothing you type or drag is uploaded, and no student data is collected or sent anywhere. These pages load no ads, trackers, or outside fonts. Where an activity remembers your progress, that stays in your own browser.</p>
+    <h2>How it's made</h2>
+    <p>The content and code are written with the help of generative-AI tools and reviewed by Trisha Kunst before anything is published. If you spot a mistake, please let me know so I can fix it.</p>
+    <h2>Contact</h2>
+    <p>For corrections, accessibility problems, or permission questions, email <a href="mailto:hello@trishakunst.com">hello@trishakunst.com</a>. Students: for help with an assignment, please ask your teacher first.</p>
+  </div>
+
+  <div class="panel" id="licensing">
+    <h2>Licensing &amp; reuse</h2>
+    <div class="stamp">© 2026 Trisha Kunst</div>
+    <div class="lictable">
+      <table>
+        <thead><tr><th>Part</th><th>License</th><th>What it covers</th></tr></thead>
+        <tbody>
+          <tr><td><b>Content</b></td><td><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></td><td>Questions, instructions, and instructional design</td></tr>
+          <tr><td><b>Code</b></td><td><a href="https://opensource.org/license/mit" target="_blank" rel="noopener">MIT</a></td><td>HTML, CSS, and JavaScript source</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Yes, without asking:</b> use these with students, share the links, host your own copy for a class or school, and adapt them, as long as you credit the original.</p>
+    <p><b>Not without permission:</b> selling them or bundling them into a paid course or product.</p>
+    <p><b>How to credit:</b></p>
+    <div class="cite">[Resource name] © 2026 Trisha Kunst. Licensed CC BY-NC 4.0.</div>
+    <p class="fine">Maps, images, and other material by other people are not covered by this license and remain the property of their owners.</p>
+  </div>
+
+  <footer>
+    tklearn <span class="fdot" aria-hidden="true"></span> Free study resources by Trisha Kunst <span class="fdot" aria-hidden="true"></span> <a href="mailto:hello@trishakunst.com">hello@trishakunst.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
