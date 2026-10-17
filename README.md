@@ -9,6 +9,7 @@ Each resource is its own GitHub Pages repo under `tkunst`, served at `https://tk
 | Resource | Repo | Live |
 |---|---|---|
 | AP World Regions Map Quiz | [ap-world-regions-quiz](https://github.com/tkunst/ap-world-regions-quiz) | https://tkunst.github.io/ap-world-regions-quiz/ |
+| Element Flashcards | [element-flashcards](https://github.com/tkunst/element-flashcards) | https://tkunst.github.io/element-flashcards/ |
 
 ## Adding a resource
 
